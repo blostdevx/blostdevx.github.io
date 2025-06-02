@@ -1,0 +1,734 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis: Participación Ciudadana Estudiantil</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            line-height: 1.6;
+            padding: 10px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 15px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #b21f1f;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #1a2a6c;
+            flex-shrink: 0;
+        }
+        
+        .card-header i {
+            font-size: clamp(20px, 3vw, 28px);
+            color: #b21f1f;
+            margin-right: 15px;
+            background: rgba(26, 42, 108, 0.1);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .card h2 {
+            font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+            color: #1a2a6c;
+            line-height: 1.3;
+        }
+        
+        .chart-container {
+            height: 250px;
+            margin: 15px 0;
+            position: relative;
+            flex-grow: 1;
+        }
+        
+        .analysis {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: auto;
+            border-left: 4px solid #b21f1f;
+            flex-shrink: 0;
+        }
+        
+        .analysis h3 {
+            color: #1a2a6c;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+        
+        .analysis h3 i {
+            margin-right: 8px;
+            color: #b21f1f;
+            font-size: clamp(14px, 2vw, 16px);
+        }
+        
+        .analysis p {
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(178, 31, 31, 0.15), rgba(26, 42, 108, 0.15));
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .conclusion {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            border-top: 5px solid #b21f1f;
+        }
+        
+        .conclusion h2 {
+            color: #1a2a6c;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        .conclusion-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .conclusion-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .conclusion-text p {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            margin-bottom: 15px;
+        }
+        
+        .conclusion-text ul {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        
+        .conclusion-text li {
+            margin-bottom: 10px;
+            font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+        }
+        
+        .conclusion-stats {
+            flex: 1;
+            min-width: 280px;
+            background: rgba(26, 42, 108, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .stat-item {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+        
+        .stat-badge {
+            width: 35px;
+            height: 35px;
+            background: #b21f1f;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+        }
+        
+        .stat-item div:last-child {
+            font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+            line-height: 1.3;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 20px;
+            font-size: clamp(0.7rem, 1.4vw, 0.8rem);
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .footer-main {
+            margin-bottom: 8px;
+        }
+        
+        .footer-credit {
+            font-size: clamp(0.6rem, 1.2vw, 0.7rem);
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+        
+        /* Responsive breakpoints */
+        @media (max-width: 768px) {
+            body {
+                padding: 8px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .card {
+                min-height: auto;
+                padding: 15px;
+            }
+            
+            .chart-container {
+                height: 220px;
+            }
+            
+            .conclusion-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .conclusion-stats {
+                min-width: auto;
+            }
+            
+            .card-header {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .card-header i {
+                margin-right: 10px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .card {
+                padding: 12px;
+                border-radius: 12px;
+            }
+            
+            .chart-container {
+                height: 200px;
+                margin: 10px 0;
+            }
+            
+            .analysis {
+                padding: 12px;
+            }
+            
+            .conclusion {
+                padding: 15px;
+            }
+            
+            .stat-badge {
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .card {
+                padding: 10px;
+            }
+            
+            .chart-container {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chart-bar"></i> Análisis de Participación Ciudadana</h1>
+            <p class="subtitle">Resultados de la encuesta sobre participación estudiantil - 2do Medio</p>
+        </header>
+        
+        <div class="stats-grid">
+            <!-- Card 1: Participación en decisiones -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-hand-paper"></i>
+                    <h2>Participación en decisiones del curso</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="participationChart"></canvas>
+                </div>
+                <div class="analysis">
+                    <h3><i class="fas fa-chart-pie"></i> Análisis</h3>
+                    <p>La mayoría de los estudiantes (<span class="highlight">73%</span>) reportan haber participado en decisiones de su curso. Esto indica un buen nivel de involucramiento estudiantil en los procesos democráticos del curso.</p>
+                    <p>Solo un <span class="highlight">27%</span> no ha participado, lo que sugiere oportunidades para aumentar la inclusión.</p>
+                </div>
+            </div>
+            
+            <!-- Card 2: Pertenencia a directiva -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-users"></i>
+                    <h2>Pertenencia a la directiva del curso</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="directiveChart"></canvas>
+                </div>
+                <div class="analysis">
+                    <h3><i class="fas fa-chart-pie"></i> Análisis</h3>
+                    <p>Una minoría significativa (<span class="highlight">24%</span>) forma parte de la directiva del curso. Esto indica que los roles de liderazgo están concentrados en un grupo reducido de estudiantes.</p>
+                    <p>El <span class="highlight">76%</span> no participa en la directiva, lo que podría reflejar barreras de acceso o falta de interés en roles formales.</p>
+                </div>
+            </div>
+            
+            <!-- Card 3: Justicia en elecciones -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-balance-scale"></i>
+                    <h2>Percepción de justicia en elecciones</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="electionsChart"></canvas>
+                </div>
+                <div class="analysis">
+                    <h3><i class="fas fa-chart-pie"></i> Análisis</h3>
+                    <p>Las opiniones están divididas respecto a la justicia de las elecciones: <span class="highlight">48%</span> las considera justas, mientras que <span class="highlight">41%</span> no.</p>
+                    <p>Un <span class="highlight">11%</span> tiene una opinión intermedia, lo que sugiere que los procesos electorales podrían mejorar en transparencia y equidad.</p>
+                </div>
+            </div>
+            
+            <!-- Card 4: Conocimiento del centro de estudiantes -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Conocimiento del rol del centro de estudiantes</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="knowledgeChart"></canvas>
+                </div>
+                <div class="analysis">
+                    <h3><i class="fas fa-chart-pie"></i> Análisis</h3>
+                    <p>Hay un nivel moderado de conocimiento sobre el rol del centro de estudiantes: <span class="highlight">42%</span> afirma saberlo, mientras que <span class="highlight">34%</span> tiene conocimiento limitado.</p>
+                    <p>Un preocupante <span class="highlight">24%</span> desconoce completamente esta función, indicando una necesidad de mayor difusión.</p>
+                </div>
+            </div>
+            
+            <!-- Card 5: Conocimiento de roles en consejo de curso -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-user-friends"></i>
+                    <h2>Conocimiento de roles en el consejo de curso</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="rolesChart"></canvas>
+                </div>
+                <div class="analysis">
+                    <h3><i class="fas fa-chart-pie"></i> Análisis</h3>
+                    <p>La mayoría de los estudiantes (<span class="highlight">61%</span>) conocen los roles dentro del consejo de curso, lo que indica una buena comprensión de la estructura organizativa.</p>
+                    <p>Sin embargo, un <span class="highlight">39%</span> desconoce estas funciones, mostrando una oportunidad para mejorar la difusión de información.</p>
+                </div>
+            </div>
+            
+            <!-- Card 6: Ambiente en sala de clases -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-smile"></i>
+                    <h2>Percepción del ambiente en el aula</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="environmentChart"></canvas>
+                </div>
+                <div class="analysis">
+                    <h3><i class="fas fa-chart-pie"></i> Análisis</h3>
+                    <p>El ambiente en el aula es mayormente positivo: <span class="highlight">66%</span> de los estudiantes percibe un buen ambiente.</p>
+                    <p>Solo un <span class="highlight">27%</span> reporta un ambiente negativo, mientras que un <span class="highlight">7%</span> tiene opiniones mixtas.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="conclusion">
+            <h2><i class="fas fa-lightbulb"></i> Conclusiones Generales</h2>
+            <div class="conclusion-content">
+                <div class="conclusion-text">
+                    <p>El análisis de los datos revela una comunidad estudiantil con un nivel moderado-alto de participación, pero con áreas importantes de mejora:</p>
+                    <ul>
+                        <li>Existe una <span class="highlight">participación significativa en decisiones</span>, pero los roles de liderazgo están concentrados en una minoría.</li>
+                        <li>La percepción sobre la justicia de las elecciones está <span class="highlight">dividida</span>, indicando posibles mejoras en los procesos democráticos.</li>
+                        <li>Hay un <span class="highlight">conocimiento limitado</span> sobre el centro de estudiantes en un cuarto de los encuestados.</li>
+                        <li>Los factores motivacionales más mencionados para participar incluyen: <span class="highlight">actividades más entretenidas</span>, <span class="highlight">mejor organización</span>, y <span class="highlight">mayor representatividad</span>.</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-style: italic;">Estos hallazgos sugieren la necesidad de implementar estrategias para democratizar la participación, transparentar los procesos electorales, y difundir mejor las funciones de representación estudiantil.</p>
+                </div>
+                <div class="conclusion-stats">
+                    <div class="stat-item">
+                        <div class="stat-badge">73%</div>
+                        <div>Participan en decisiones del curso</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-badge">61%</div>
+                        <div>Conocen roles del consejo de curso</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-badge">66%</div>
+                        <div>Perciben buen ambiente en clases</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-badge">48%</div>
+                        <div>Creen que las elecciones son justas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-badge">24%</div>
+                        <div>Forman parte de la directiva</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-main">Análisis generado automáticamente a partir de respuestas de formulario | Datos recopilados el 27/05/2025</div>
+            <div class="footer-credit">Análisis desarrollado por el novio de Yesenia</div>
+        </footer>
+    </div>
+
+    <script>
+        // Configuración común para los gráficos
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                            size: window.innerWidth < 768 ? 10 : 14
+                        }
+                    }
+                },
+                tooltip: {
+                    bodyFont: {
+                        size: window.innerWidth < 768 ? 11 : 14
+                    },
+                    titleFont: {
+                        size: window.innerWidth < 768 ? 12 : 15
+                    }
+                }
+            }
+        };
+        
+        // Colores personalizados
+        const colorPalette = [
+            'rgba(26, 42, 108, 0.8)',
+            'rgba(178, 31, 31, 0.8)',
+            'rgba(41, 128, 185, 0.8)',
+            'rgba(39, 174, 96, 0.8)',
+            'rgba(142, 68, 173, 0.8)',
+            'rgba(44, 62, 80, 0.8)'
+        ];
+        
+        // Gráfico 1: Participación en decisiones
+        const participationCtx = document.getElementById('participationChart').getContext('2d');
+        new Chart(participationCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Sí he participado', 'No he participado'],
+                datasets: [{
+                    data: [73, 27],
+                    backgroundColor: [colorPalette[0], colorPalette[1]],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    title: {
+                        display: true,
+                        text: '¿Has participado en decisiones de tu curso?',
+                        font: {
+                            size: window.innerWidth < 768 ? 12 : 16
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Gráfico 2: Pertenencia a directiva
+        const directiveCtx = document.getElementById('directiveChart').getContext('2d');
+        new Chart(directiveCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Sí participo', 'No participo'],
+                datasets: [{
+                    data: [24, 76],
+                    backgroundColor: [colorPalette[0], colorPalette[1]],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    title: {
+                        display: true,
+                        text: '¿Eres parte de la directiva de tu curso?',
+                        font: {
+                            size: window.innerWidth < 768 ? 12 : 16
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Gráfico 3: Justicia en elecciones
+        const electionsCtx = document.getElementById('electionsChart').getContext('2d');
+        new Chart(electionsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Sí, justas', 'No, injustas', 'Más o menos'],
+                datasets: [{
+                    label: 'Porcentaje de estudiantes',
+                    data: [48, 41, 11],
+                    backgroundColor: colorPalette,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...chartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                size: window.innerWidth < 768 ? 10 : 12
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                size: window.innerWidth < 768 ? 9 : 11
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...chartOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Percepción sobre justicia en elecciones',
+                        font: {
+                            size: window.innerWidth < 768 ? 12 : 16
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Gráfico 4: Conocimiento centro de estudiantes
+        const knowledgeCtx = document.getElementById('knowledgeChart').getContext('2d');
+        new Chart(knowledgeCtx, {
+            type: 'polarArea',
+            data: {
+                labels: ['Sí sabe', 'Sabe algo', 'No sabe'],
+                datasets: [{
+                    data: [42, 34, 24],
+                    backgroundColor: colorPalette,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Conocimiento sobre rol del centro de estudiantes',
+                        font: {
+                            size: window.innerWidth < 768 ? 12 : 16
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Gráfico 5: Conocimiento de roles
+        const rolesCtx = document.getElementById('rolesChart').getContext('2d');
+        new Chart(rolesCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Sí conoce', 'No conoce'],
+                datasets: [{
+                    data: [61, 39],
+                    backgroundColor: [colorPalette[0], colorPalette[1]],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    title: {
+                        display: true,
+                        text: '¿Conoces los roles del consejo de curso?',
+                        font: {
+                            size: window.innerWidth < 768 ? 12 : 16
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Gráfico 6: Ambiente en el aula
+        const environmentCtx = document.getElementById('environmentChart').getContext('2d');
+        new Chart(environmentCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Buen ambiente', 'Ambiente regular', 'Mal ambiente'],
+                datasets: [{
+                    label: 'Porcentaje de estudiantes',
+                    data: [66, 7, 27],
+                    backgroundColor: [colorPalette[0], colorPalette[4], colorPalette[1]],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...chartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                size: window.innerWidth < 768 ? 10 : 12
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                size: window.innerWidth < 768 ? 9 : 11
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...chartOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Percepción del ambiente en el aula',
+                        font: {
+                            size: window.innerWidth < 768 ? 12 : 16
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
