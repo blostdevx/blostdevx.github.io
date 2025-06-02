@@ -305,6 +305,114 @@
             line-height: 1.3;
         }
 
+        /* Estilos para la sección demográfica */
+        .demographic-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            border-top: 5px solid #1a2a6c;
+        }
+
+        .demographic-section h2 {
+            color: #1a2a6c;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .demographic-section h2 i {
+            color: #b21f1f;
+            font-size: clamp(20px, 3vw, 24px);
+        }
+
+        .demographic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .demographic-card {
+            background: rgba(26, 42, 108, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(26, 42, 108, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .demographic-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 42, 108, 0.15);
+        }
+
+        .demographic-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(178, 31, 31, 0.3);
+        }
+
+        .demographic-header i {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: #b21f1f;
+            margin-right: 12px;
+            background: rgba(178, 31, 31, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .demographic-header h3 {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #1a2a6c;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .demographic-content p {
+            font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+            margin-bottom: 12px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .demographic-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .demographic-list li {
+            margin-bottom: 8px;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+            display: flex;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .percentage {
+            background: linear-gradient(120deg, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.8em;
+            margin-right: 10px;
+            min-width: 45px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
         footer {
             text-align: center;
             padding: 15px;
@@ -330,6 +438,25 @@
         @media (max-width: 768px) {
             body {
                 padding: 8px;
+            }
+
+            .demographic-section {
+                padding: 20px 15px;
+                margin-bottom: 25px;
+            }
+
+            .demographic-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .demographic-card {
+                padding: 15px;
+            }
+
+            .demographic-header {
+                flex-wrap: wrap;
+                gap: 8px;
             }
 
             .stats-grid {
@@ -370,6 +497,25 @@
         @media (max-width: 480px) {
             body {
                 padding: 5px;
+            }
+
+            .demographic-section {
+                padding: 15px 10px;
+                margin-bottom: 20px;
+            }
+
+            .demographic-grid {
+                gap: 12px;
+            }
+
+            .demographic-card {
+                padding: 12px;
+            }
+
+            .demographic-header i {
+                width: 35px;
+                height: 35px;
+                margin-right: 8px;
             }
 
             .stats-grid {
@@ -424,6 +570,58 @@
             <h1><i class="fas fa-chart-bar"></i> Análisis de Participación Ciudadana</h1>
             <p class="subtitle">Resultados de la encuesta sobre participación estudiantil - 2do Medio</p>
         </header>
+
+        <!-- Nueva sección: Información demográfica -->
+        <div class="demographic-section">
+            <h2><i class="fas fa-users"></i> ¿Quiénes respondieron la encuesta?</h2>
+            <div class="demographic-grid">
+                <div class="demographic-card">
+                    <div class="demographic-header">
+                        <i class="fas fa-school"></i>
+                        <h3>Cursos participantes</h3>
+                    </div>
+                    <div class="demographic-content">
+                        <p>La mayoría de las respuestas provienen de estudiantes de <span class="highlight">Enseñanza Media</span>, especialmente de:</p>
+                        <ul class="demographic-list">
+                            <li><span class="percentage">28%</span> - 3° Medio</li>
+                            <li><span class="percentage">25,3%</span> - 2° Medio</li>
+                            <li><span class="percentage">20%</span> - 8° Básico</li>
+                            <li>Menor representación de 5° y 7° Básico</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="demographic-card">
+                    <div class="demographic-header">
+                        <i class="fas fa-birthday-cake"></i>
+                        <h3>Edad de los estudiantes</h3>
+                    </div>
+                    <div class="demographic-content">
+                        <p>Los resultados reflejan principalmente la mirada de <span class="highlight">estudiantes adolescentes</span> en una etapa clave para el desarrollo de su conciencia ciudadana:</p>
+                        <ul class="demographic-list">
+                            <li><span class="percentage">48%</span> - Entre 15 y 16 años</li>
+                            <li><span class="percentage">34,7%</span> - Entre 13 y 14 años</li>
+                            <li>Otras edades en menor proporción</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="demographic-card">
+                    <div class="demographic-header">
+                        <i class="fas fa-venus-mars"></i>
+                        <h3>Diversidad de género</h3>
+                    </div>
+                    <div class="demographic-content">
+                        <p>La muestra presenta una <span class="highlight">distribución equilibrada</span> que refleja la diversidad de la comunidad escolar:</p>
+                        <ul class="demographic-list">
+                            <li><span class="percentage">52%</span> - Género masculino</li>
+                            <li><span class="percentage">45,3%</span> - Género femenino</li>
+                            <li><span class="percentage">2,6%</span> - Otras identidades de género</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="stats-grid">
             <!-- Card 1: Participación en decisiones -->
@@ -876,7 +1074,7 @@
                 expandedContent.style.maxHeight = expandedContent.scrollHeight + 'px';
                 button.classList.add('expanded');
                 button.querySelector('span').textContent = 'Leer menos';
-                
+
                 // Después de la transición, permitir que el contenido crezca libremente
                 setTimeout(() => {
                     if (expandedContent.classList.contains('show')) {
