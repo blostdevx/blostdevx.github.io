@@ -3,117 +3,34 @@ import { SiPython, SiJavascript, SiReact, SiNodedotjs } from "react-icons/si";
 import { Shield, Code, Database, Globe } from "lucide-react";
 
 export default function DocsSection() {
-  const getHrefForCategory = (title: string) => {
-    switch (title) {
-      case "Python Mastery": return "/python";
-      case "Security Protocols": return "/security-protocols";
-      case "DevOps & Cloud": return "/git";
-      default: return "/content";
-    }
-  };
+
   const docCategories = [
     {
-      icon: SiPython,
-      title: "Python Mastery",
-      color: "text-neon-green",
-      borderColor: "border-neon-green",
-      topics: [
-        "• Advanced Data Structures & Algorithms",
-        "• Async Programming & Concurrency",
-        "• Web Scraping & Automation",
-        "• Security Libraries & Frameworks",
-        "• Performance Optimization Techniques"
-      ]
-    },
-    {
-      icon: SiJavascript,
-      title: "JavaScript Deep Dive",
+      icon: Shield,
+      title: "Cybersecurity",
       color: "text-neon-cyan",
       borderColor: "border-neon-cyan",
+      href: "/cybersecurity",
       topics: [
-        "• ES6+ Modern Features",
-        "• Functional Programming Patterns",
-        "• DOM Manipulation & Events",
-        "• API Development & Integration",
-        "• Testing Frameworks & TDD"
-      ]
-    },
-    {
-      icon: SiReact,
-      title: "React Ecosystem",
-      color: "text-neon-purple",
-      borderColor: "border-neon-purple",
-      topics: [
-        "• Hooks & State Management",
-        "• Component Architecture",
-        "• Performance Optimization",
-        "• Testing & Debugging",
-        "• Next.js & SSR/SSG"
-      ]
-    },
-    {
-      icon: SiNodedotjs,
-      title: "Node.js Backend",
-      color: "text-neon-pink",
-      borderColor: "border-neon-pink",
-      topics: [
-        "• Express.js & Fastify",
-        "• Database Integration",
-        "• Authentication & Security",
-        "• API Design & REST/GraphQL",
-        "• Microservices Architecture"
-      ]
-    },
-    {
-      icon: Shield,
-      title: "Security Protocols",
-      color: "text-neon-green",
-      borderColor: "border-neon-green",
-      topics: [
+        "• Kali Linux Master Guide",
         "• Penetration Testing Methodologies",
         "• Network Security & Firewalls",
-        "• Cryptography & Encryption",
-        "• Incident Response Procedures",
-        "• Threat Analysis & OSINT"
-      ]
-    },
-    {
-      icon: Code,
-      title: "Web Technologies",
-      color: "text-neon-cyan",
-      borderColor: "border-neon-cyan",
-      topics: [
-        "• HTML5 Semantic Elements",
-        "• CSS3 Advanced Features",
-        "• SASS/SCSS Preprocessing",
-        "• Responsive Design Patterns",
-        "• Progressive Web Apps"
+        "• Ethical Hacking Techniques",
+        "• Malware Analysis & Forensics"
       ]
     },
     {
       icon: Database,
-      title: "Database Systems",
-      color: "text-neon-purple",
-      borderColor: "border-neon-purple",
+      title: "Git & Version Control",
+      color: "text-neon-green",
+      borderColor: "border-neon-green",
+      href: "/git",
       topics: [
-        "• SQL Query Optimization",
-        "• NoSQL Database Design",
-        "• Database Security",
-        "• Backup & Recovery",
-        "• Performance Tuning"
-      ]
-    },
-    {
-      icon: Globe,
-      title: "DevOps & Cloud",
-      color: "text-neon-pink",
-      borderColor: "border-neon-pink",
-      topics: [
-        "• Docker & Containerization",
-        "• Kubernetes Orchestration",
-        "• CI/CD Pipelines",
-        "• Cloud Security (AWS/Azure)",
-        "• Infrastructure as Code"
+        "• Git Fundamentals & Best Practices",
+        "• Branching Strategies & Workflows",
+        "• Collaboration & Pull Requests",
+        "• Advanced Git Techniques",
+        "• Repository Management"
       ]
     }
   ];
@@ -141,7 +58,7 @@ export default function DocsSection() {
           Documentación técnica completa sobre lenguajes, frameworks y metodologías de desarrollo
         </motion.p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {docCategories.map((category, index) => (
             <motion.div
               key={category.title}
@@ -183,13 +100,12 @@ export default function DocsSection() {
                 ))}
               </ul>
               
-              <motion.button
-                className={`mt-6 w-full px-4 py-2 border ${category.borderColor}/40 ${category.color} hover:bg-current/10 transition-all duration-300 rounded font-fira text-sm`}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <motion.a
+                href={category.href}
+                className={`mt-6 w-full px-4 py-2 border ${category.borderColor}/40 ${category.color} hover:bg-current/10 transition-all duration-300 rounded font-fira text-sm block text-center`}
               >
                 Explorar Documentación
-              </motion.button>
+              </motion.a>
             </motion.div>
           ))}
         </div>
@@ -201,13 +117,14 @@ export default function DocsSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          <motion.button
-            className="neon-border bg-transparent px-8 py-4 font-orbitron font-bold text-neon-purple hover:bg-neon-purple/10 transition-all duration-300"
+          <motion.a
+            href="/content"
+            className="inline-block neon-border bg-transparent px-8 py-4 font-orbitron font-bold text-neon-purple hover:bg-neon-purple/10 transition-all duration-300"
             whileHover={{ scale: 1.05, boxShadow: "0 0 20px currentColor" }}
             whileTap={{ scale: 0.95 }}
           >
-            ACCEDER A TODA LA DOCUMENTACIÓN
-          </motion.button>
+            EXPLORAR TODA LA DOCUMENTACIÓN
+          </motion.a>
         </motion.div>
       </div>
     </section>

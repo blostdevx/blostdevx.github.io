@@ -8,11 +8,11 @@ export default function ExperienceSection() {
     {
       id: 1,
       company: "CITT DuocUC",
-      position: "Desarrollador & Investigador en Ciberseguridad",
+      position: "Ayudante & Líder de Equipos en Ciberseguridad",
       period: "2024 - Presente",
       location: "Chile",
       type: "ACTUAL",
-      description: "Desarrollo de proyectos de ciberseguridad y investigación en tecnologías emergentes. Participación activa en competencias CTF y análisis de vulnerabilidades.",
+      description: "Ayudantía y liderazgo de equipos de ciberseguridad. Desarrollo de proyectos de investigación, mentoring a estudiantes y participación en competencias CTF. Enfoque futuro en especialización en ciberseguridad.",
       technologies: ["Python", "Kali Linux", "Metasploit", "Burp Suite", "Wireshark"],
       color: "neon-cyan",
       isActive: true
@@ -84,18 +84,18 @@ export default function ExperienceSection() {
 
         {/* Experience Timeline */}
         <div className="relative mb-16">
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-neon-cyan via-neon-purple to-neon-pink"></div>
+          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-1 h-full bg-gradient-to-b from-neon-cyan via-neon-purple to-neon-pink"></div>
           
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.id}
-              className={`relative mb-12 ${index % 2 === 0 ? 'md:text-right md:pr-8 md:ml-auto md:w-1/2' : 'md:text-left md:pl-8 md:mr-auto md:w-1/2'}`}
+              className={`relative mb-12 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:text-right md:pr-8 md:ml-auto md:w-1/2' : 'md:text-left md:pl-8 md:mr-auto md:w-1/2'}`}
               initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
             >
-              <div className={`absolute top-4 ${index % 2 === 0 ? 'md:-right-4' : 'md:-left-4'} left-1/2 md:left-auto transform -translate-x-1/2 md:transform-none w-8 h-8 bg-${exp.color} rounded-full border-4 border-deep-black flex items-center justify-center`}>
+              <div className={`absolute top-4 -left-4 md:left-auto ${index % 2 === 0 ? 'md:-right-4' : 'md:-left-4'} md:left-1/2 md:-translate-x-1/2 md:transform-none w-8 h-8 bg-${exp.color} rounded-full border-4 border-deep-black flex items-center justify-center`}>
                 <div className={`w-3 h-3 bg-${exp.color} rounded-full animate-pulse`}></div>
               </div>
               

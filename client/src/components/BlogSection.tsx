@@ -35,7 +35,7 @@ export default function BlogSection() {
           viewport={{ once: true }}
         >
           <motion.div
-            className="text-6xl md:text-8xl font-orbitron font-bold mb-8 animate-neon-text-flicker"
+            className="text-4xl sm:text-6xl md:text-8xl font-orbitron font-bold mb-8 animate-neon-text-flicker"
             animate={{
               textShadow: [
                 "0 0 20px #00FFFF, 0 0 40px #00FFFF, 0 0 60px #00FFFF",
@@ -49,7 +49,7 @@ export default function BlogSection() {
             PRÓXIMAMENTE...
           </motion.div>
           <motion.p
-            className="text-xl text-gray-400 max-w-md mx-auto"
+            className="text-lg sm:text-xl text-gray-400 max-w-md mx-auto px-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.5 }}

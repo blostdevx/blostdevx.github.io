@@ -13,7 +13,7 @@ export default function HeroSection() {
           transition={{ duration: 1 }}
         >
           <motion.h1
-            className="text-6xl md:text-8xl font-orbitron font-black mb-6"
+            className="text-4xl sm:text-6xl md:text-8xl font-orbitron font-black mb-6"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.2, type: "spring" }}
@@ -39,7 +39,7 @@ export default function HeroSection() {
           </motion.h1>
 
           <motion.div
-            className="text-xl md:text-2xl font-fira text-neon-green mb-8 typewriter-text min-h-[2.5rem]"
+            className="text-lg sm:text-xl md:text-2xl font-fira text-neon-green mb-8 typewriter-text min-h-[2.5rem]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
@@ -48,7 +48,7 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.p
-            className="text-lg md:text-xl max-w-3xl mx-auto mb-12 text-gray-300 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-12 text-gray-300 leading-relaxed px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}

@@ -174,46 +174,46 @@ export default function WriteupSection() {
 
         {/* Statistics Section */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
           <motion.div 
-            className="text-center p-6 holographic rounded-lg"
+            className="text-center p-4 md:p-6 holographic rounded-lg"
             whileHover={{ scale: 1.05 }}
           >
-            <Shield className="text-3xl text-neon-cyan mx-auto mb-2" />
-            <div className="text-2xl font-orbitron font-bold text-neon-cyan">7</div>
-            <div className="text-sm text-gray-400">CTFs Completed</div>
+            <Shield className="text-2xl md:text-3xl text-neon-cyan mx-auto mb-2" />
+            <div className="text-xl md:text-2xl font-orbitron font-bold text-neon-cyan">7</div>
+            <div className="text-xs md:text-sm text-gray-400">CTFs Completed</div>
           </motion.div>
           
           <motion.div 
-            className="text-center p-6 holographic rounded-lg"
+            className="text-center p-4 md:p-6 holographic rounded-lg"
             whileHover={{ scale: 1.05 }}
           >
-            <Bug className="text-3xl text-neon-pink mx-auto mb-2" />
-            <div className="text-2xl font-orbitron font-bold text-neon-pink">17</div>
-            <div className="text-sm text-gray-400">Vulnerabilities Found</div>
+            <Bug className="text-2xl md:text-3xl text-neon-pink mx-auto mb-2" />
+            <div className="text-xl md:text-2xl font-orbitron font-bold text-neon-pink">17</div>
+            <div className="text-xs md:text-sm text-gray-400">Vulnerabilities Found</div>
           </motion.div>
           
           <motion.div 
-            className="text-center p-6 holographic rounded-lg"
+            className="text-center p-4 md:p-6 holographic rounded-lg"
             whileHover={{ scale: 1.05 }}
           >
-            <Trophy className="text-3xl text-neon-green mx-auto mb-2" />
-            <div className="text-2xl font-orbitron font-bold text-neon-green">$0</div>
-            <div className="text-sm text-gray-400">Bounty Rewards</div>
+            <Trophy className="text-2xl md:text-3xl text-neon-green mx-auto mb-2" />
+            <div className="text-xl md:text-2xl font-orbitron font-bold text-neon-green">$0</div>
+            <div className="text-xs md:text-sm text-gray-400">Bounty Rewards</div>
           </motion.div>
           
           <motion.div 
-            className="text-center p-6 holographic rounded-lg"
+            className="text-center p-4 md:p-6 holographic rounded-lg"
             whileHover={{ scale: 1.05 }}
           >
-            <Zap className="text-3xl text-neon-purple mx-auto mb-2" />
-            <div className="text-2xl font-orbitron font-bold text-neon-purple">80</div>
-            <div className="text-sm text-gray-400">Research Hours</div>
+            <Zap className="text-2xl md:text-3xl text-neon-purple mx-auto mb-2" />
+            <div className="text-xl md:text-2xl font-orbitron font-bold text-neon-purple">80</div>
+            <div className="text-xs md:text-sm text-gray-400">Research Hours</div>
           </motion.div>
         </motion.div>
       </div>
