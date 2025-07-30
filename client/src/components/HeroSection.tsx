@@ -63,8 +63,16 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2 }}
           >
+            <motion.a
+              href="/git-tutorial"
+              className="neon-border bg-transparent px-8 py-4 font-orbitron font-bold text-neon-green hover:bg-neon-green/10 transition-all duration-300 animate-pulse-neon"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px currentColor" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              COMENZAR TUTORIAL GIT
+            </motion.a>
             <motion.button
-              className="neon-border bg-transparent px-8 py-4 font-orbitron font-bold text-neon-cyan hover:bg-neon-cyan/10 transition-all duration-300 animate-pulse-neon"
+              className="neon-border bg-transparent px-8 py-4 font-orbitron font-bold text-neon-cyan hover:bg-neon-cyan/10 transition-all duration-300"
               whileHover={{ scale: 1.05, boxShadow: "0 0 20px currentColor" }}
               whileTap={{ scale: 0.95 }}
               onClick={() => document.querySelector('#blog')?.scrollIntoView({ behavior: 'smooth' })}

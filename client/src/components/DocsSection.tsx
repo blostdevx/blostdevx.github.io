@@ -24,7 +24,7 @@ export default function DocsSection() {
       title: "Git & Version Control",
       color: "text-neon-green",
       borderColor: "border-neon-green",
-      href: "/git",
+      href: "/git-tutorial",
       topics: [
         "• Git Fundamentals & Best Practices",
         "• Branching Strategies & Workflows",
