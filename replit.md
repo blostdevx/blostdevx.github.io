@@ -107,3 +107,36 @@ Preferred communication style: Simple, everyday language.
 - `npm run db:push`: Apply database schema changes
 
 The application follows a monorepo structure with shared types and schemas, enabling type safety across the entire stack while maintaining clear separation between client and server code.
+
+## Recent Updates
+
+### GitHub Pages Deployment (Latest)
+- **Date**: January 2025
+- **Changes**: Configured complete GitHub Pages deployment setup
+- **Files Added**: 
+  - `vite.config.github.ts` - Production build configuration
+  - `deploy.sh` - Automated deployment script
+  - `DEPLOYMENT.md` - Complete deployment guide
+  - `README-GITHUB-PAGES.md` - Step-by-step instructions
+- **Features**: 
+  - Static build optimization for GitHub Pages
+  - SPA routing support with 404.html fallback
+  - Asset compression and chunking
+  - Ready for `username.github.io` deployment
+
+### Git Tutorial Implementation
+- **Date**: January 2025  
+- **Major Feature**: Complete Git course page created (`/git-tutorial`)
+- **Features**:
+  - W3Schools-style interactive tutorial
+  - Copyable command blocks with toast notifications
+  - 9 comprehensive sections covering basic to advanced Git
+  - Responsive design maintaining cyberpunk aesthetic
+  - Direct integration with main navigation
+
+### Content Structure Simplification
+- **Date**: January 2025
+- **Changes**: Streamlined documentation to focus on core content
+- **Removed**: Python, Security Protocols placeholder pages
+- **Updated**: Navigation routes and content filtering
+- **Current Content**: Git tutorial (complete) + Cybersecurity (coming soon)
