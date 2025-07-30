@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+  
+  /* Neon Colors */
+  --neon-cyan: hsl(180, 100%, 50%);
+  --neon-purple: hsl(273, 75%, 50%);
+  --neon-pink: hsl(325, 100%, 50%);
+  --neon-green: hsl(120, 100%, 50%);
+  --electric-blue: hsl(195, 100%, 50%);
+  --deep-black: hsl(0, 0%, 4%);
+  --dark-gray: hsl(0, 0%, 7%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-inter antialiased bg-background text-foreground overflow-x-hidden;
+    background-color: hsl(0, 0%, 4%);
+    color: hsl(0, 0%, 98%);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+  }
+  
+  .font-fira {
+    font-family: 'Fira Code', monospace;
+  }
+  
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom Animations */
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  10% {
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    transform: translate(2px, -2px);
+  }
+  30% {
+    transform: translate(-2px, -2px);
+  }
+  40% {
+    transform: translate(2px, 2px);
+  }
+  50% {
+    transform: translate(-2px, 2px);
+  }
+}
+
+@keyframes typewriter {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-neon {
+  0%, 100% {
+    box-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-glow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px currentColor);
+  }
+}
+
+@keyframes spin-glow {
+  0% {
+    transform: rotate(0deg);
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+  100% {
+    transform: rotate(360deg);
+    filter: drop-shadow(0 0 20px currentColor);
+  }
+}
+
+/* Utility Classes */
+.cursor-trail {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.8) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.1s ease;
+}
+
+.matrix-char {
+  position: absolute;
+  color: hsl(120, 100%, 50%);
+  font-family: 'Fira Code', monospace;
+  font-size: 18px;
+  animation: matrix-rain linear infinite;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.neon-border {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, hsl(180, 100%, 50%), hsl(273, 75%, 50%), hsl(325, 100%, 50%), hsl(120, 100%, 50%)) 1;
+  position: relative;
+}
+
+.neon-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, hsl(180, 100%, 50%), hsl(273, 75%, 50%), hsl(325, 100%, 50%), hsl(120, 100%, 50%));
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.7;
+}
+
+.holographic {
+  background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(138, 43, 226, 0.1), rgba(255, 20, 147, 0.1));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.typewriter-text {
+  border-right: 3px solid hsl(180, 100%, 50%);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.animate-matrix-rain {
+  animation: matrix-rain 3s linear infinite;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s infinite;
+}
+
+.animate-typewriter {
+  animation: typewriter 3s steps(40) 1s infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-neon {
+  animation: pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+.animate-bounce-glow {
+  animation: bounce-glow 2s ease-in-out infinite;
+}
+
+.animate-spin-glow {
+  animation: spin-glow 3s linear infinite;
+}
+
+/* Text Colors */
+.text-neon-cyan {
+  color: hsl(180, 100%, 50%);
+}
+
+.text-neon-purple {
+  color: hsl(273, 75%, 50%);
+}
+
+.text-neon-pink {
+  color: hsl(325, 100%, 50%);
+}
+
+.text-neon-green {
+  color: hsl(120, 100%, 50%);
+}
+
+.text-electric-blue {
+  color: hsl(195, 100%, 50%);
+}
+
+/* Background Colors */
+.bg-neon-cyan {
+  background-color: hsl(180, 100%, 50%);
+}
+
+.bg-neon-purple {
+  background-color: hsl(273, 75%, 50%);
+}
+
+.bg-neon-pink {
+  background-color: hsl(325, 100%, 50%);
+}
+
+.bg-neon-green {
+  background-color: hsl(120, 100%, 50%);
+}
+
+.bg-deep-black {
+  background-color: hsl(0, 0%, 4%);
+}
+
+.bg-dark-gray {
+  background-color: hsl(0, 0%, 7%);
+}
