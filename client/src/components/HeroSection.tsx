@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useTypewriter } from "@/hooks/useTypewriter";
+import { useTypewriter } from "../hooks/useTypewriter";
 
 export default function HeroSection() {
   const typewriterText = useTypewriter("> Cybersecurity Researcher & Developer", 80);

@@ -1,24 +1,48 @@
 import { motion } from "framer-motion";
-import { Flag, Bug } from "lucide-react";
+import { Flag, Bug, Shield, Trophy, Target, Zap } from "lucide-react";
 
 export default function WriteupSection() {
   const ctfChallenges = [
-    { name: "PicoCTF 2024 - Binary Exploitation", status: "SOLVED" },
-    { name: "HackTheBox - Web Challenges", status: "SOLVED" },
-    { name: "TryHackMe - Cryptography", status: "SOLVED" }
+    { name: "PicoCTF 2024 - Binary Exploitation", status: "SOLVED", difficulty: "Hard", points: "500" },
+    { name: "HackTheBox - Web Challenges", status: "SOLVED", difficulty: "Medium", points: "300" },
+    { name: "TryHackMe - Cryptography Master", status: "SOLVED", difficulty: "Expert", points: "750" },
+    { name: "OverTheWire - Bandit Complete", status: "SOLVED", difficulty: "Beginner", points: "200" },
+    { name: "VulnHub - Advanced Pivoting", status: "IN PROGRESS", difficulty: "Hard", points: "600" }
   ];
 
   const bugBounties = [
-    { name: "XSS in Major Platform", reward: "$500" },
-    { name: "SQL Injection Discovery", reward: "$750" },
-    { name: "Authentication Bypass", reward: "$1200" }
+    { name: "XSS in Major E-commerce Platform", reward: "$500", severity: "Medium", company: "Private" },
+    { name: "SQL Injection in Banking App", reward: "$1250", severity: "High", company: "Confidential" },
+    { name: "Authentication Bypass", reward: "$2000", severity: "Critical", company: "Fortune 500" },
+    { name: "CSRF in Social Media Platform", reward: "$750", severity: "Medium", company: "Tech Giant" },
+    { name: "File Upload RCE", reward: "$3500", severity: "Critical", company: "Under Review" }
   ];
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case "Beginner": return "text-neon-green";
+      case "Medium": return "text-neon-cyan";
+      case "Hard": return "text-neon-purple";
+      case "Expert": return "text-neon-pink";
+      default: return "text-gray-400";
+    }
+  };
+
+  const getSeverityColor = (severity: string) => {
+    switch (severity) {
+      case "Low": return "text-neon-green";
+      case "Medium": return "text-neon-cyan";
+      case "High": return "text-neon-purple";
+      case "Critical": return "text-neon-pink";
+      default: return "text-gray-400";
+    }
+  };
 
   return (
     <section id="writeups" className="py-20 relative" style={{ zIndex: 10 }}>
       <div className="container mx-auto px-6">
         <motion.h2
-          className="text-4xl md:text-6xl font-orbitron font-bold text-center mb-16"
+          className="text-4xl md:text-6xl font-orbitron font-bold text-center mb-4"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -27,7 +51,17 @@ export default function WriteupSection() {
           <span className="text-neon-green">HACK</span> <span className="text-neon-cyan">WRITEUPS</span>
         </motion.h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <motion.p
+          className="text-center text-gray-400 mb-16 text-lg max-w-2xl mx-auto"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          Documentación técnica de desafíos resueltos y vulnerabilidades descubiertas
+        </motion.p>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {/* CTF Writeup */}
           <motion.div
             className="holographic p-8 rounded-lg hover:scale-105 transition-all duration-300 group"
@@ -35,26 +69,49 @@ export default function WriteupSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            whileHover={{ boxShadow: "0 0 30px rgba(0, 255, 255, 0.2)" }}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <Flag className="text-2xl text-neon-green" />
-              <h3 className="text-2xl font-orbitron font-bold">CTF CHALLENGES</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <motion.div
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Flag className="text-3xl text-neon-green" />
+              </motion.div>
+              <div>
+                <h3 className="text-2xl font-orbitron font-bold">CTF CHALLENGES</h3>
+                <p className="text-neon-green font-fira text-sm">Capture The Flag Competitions</p>
+              </div>
             </div>
             <p className="text-gray-400 mb-6">
               Soluciones detalladas de retos de Capture The Flag, análisis de vulnerabilidades y técnicas de explotación.
             </p>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {ctfChallenges.map((challenge, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center justify-between p-3 bg-black/30 rounded"
+                  className="p-4 bg-black/30 rounded border border-neon-green/20 hover:border-neon-green/40 transition-all duration-300"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  <span className="font-fira">{challenge.name}</span>
-                  <span className="text-neon-green text-sm">{challenge.status}</span>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-fira text-sm">{challenge.name}</span>
+                    <div className="flex items-center gap-2">
+                      <Trophy size={14} className="text-neon-green" />
+                      <span className="text-neon-green text-xs">{challenge.points}pts</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className={`text-xs ${getDifficultyColor(challenge.difficulty)}`}>
+                      {challenge.difficulty}
+                    </span>
+                    <span className={`text-xs font-bold ${challenge.status === 'SOLVED' ? 'text-neon-green' : 'text-neon-cyan'}`}>
+                      {challenge.status}
+                    </span>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -67,31 +124,97 @@ export default function WriteupSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            whileHover={{ boxShadow: "0 0 30px rgba(255, 20, 147, 0.2)" }}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <Bug className="text-2xl text-neon-pink" />
-              <h3 className="text-2xl font-orbitron font-bold">BUG BOUNTY</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <motion.div
+                whileHover={{ scale: 1.2 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Bug className="text-3xl text-neon-pink" />
+              </motion.div>
+              <div>
+                <h3 className="text-2xl font-orbitron font-bold">BUG BOUNTY</h3>
+                <p className="text-neon-pink font-fira text-sm">Vulnerability Research</p>
+              </div>
             </div>
             <p className="text-gray-400 mb-6">
               Reportes de vulnerabilidades encontradas en programas de bug bounty, metodología y análisis técnico.
             </p>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {bugBounties.map((bounty, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center justify-between p-3 bg-black/30 rounded"
+                  className="p-4 bg-black/30 rounded border border-neon-pink/20 hover:border-neon-pink/40 transition-all duration-300"
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  <span className="font-fira">{bounty.name}</span>
-                  <span className="text-neon-pink text-sm">{bounty.reward}</span>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-fira text-sm">{bounty.name}</span>
+                    <div className="flex items-center gap-2">
+                      <Target size={14} className="text-neon-pink" />
+                      <span className="text-neon-pink text-xs font-bold">{bounty.reward}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className={`text-xs ${getSeverityColor(bounty.severity)}`}>
+                      {bounty.severity} Severity
+                    </span>
+                    <span className="text-xs text-gray-500">{bounty.company}</span>
+                  </div>
                 </motion.div>
               ))}
             </div>
           </motion.div>
         </div>
+
+        {/* Statistics Section */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <motion.div 
+            className="text-center p-6 holographic rounded-lg"
+            whileHover={{ scale: 1.05 }}
+          >
+            <Shield className="text-3xl text-neon-cyan mx-auto mb-2" />
+            <div className="text-2xl font-orbitron font-bold text-neon-cyan">47</div>
+            <div className="text-sm text-gray-400">CTFs Completed</div>
+          </motion.div>
+          
+          <motion.div 
+            className="text-center p-6 holographic rounded-lg"
+            whileHover={{ scale: 1.05 }}
+          >
+            <Bug className="text-3xl text-neon-pink mx-auto mb-2" />
+            <div className="text-2xl font-orbitron font-bold text-neon-pink">23</div>
+            <div className="text-sm text-gray-400">Vulnerabilities Found</div>
+          </motion.div>
+          
+          <motion.div 
+            className="text-center p-6 holographic rounded-lg"
+            whileHover={{ scale: 1.05 }}
+          >
+            <Trophy className="text-3xl text-neon-green mx-auto mb-2" />
+            <div className="text-2xl font-orbitron font-bold text-neon-green">$12.5K</div>
+            <div className="text-sm text-gray-400">Bounty Rewards</div>
+          </motion.div>
+          
+          <motion.div 
+            className="text-center p-6 holographic rounded-lg"
+            whileHover={{ scale: 1.05 }}
+          >
+            <Zap className="text-3xl text-neon-purple mx-auto mb-2" />
+            <div className="text-2xl font-orbitron font-bold text-neon-purple">156</div>
+            <div className="text-sm text-gray-400">Research Hours</div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

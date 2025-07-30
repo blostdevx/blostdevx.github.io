@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { SiGithub, SiTwitter, SiLinkedin } from "react-icons/si";
+import { SiGithub, SiX, SiLinkedin } from "react-icons/si";
 
 export default function ContactSection() {
   const socialLinks = [
@@ -11,11 +11,11 @@ export default function ContactSection() {
       href: "https://github.com/blostdevx"
     },
     {
-      icon: SiTwitter,
-      label: "TWITTER",
+      icon: SiX,
+      label: "X/TWITTER",
       color: "text-neon-purple",
       borderColor: "border-neon-purple",
-      href: "https://twitter.com/blostdevx"
+      href: "https://x.com/blostdevx"
     },
     {
       icon: SiLinkedin,

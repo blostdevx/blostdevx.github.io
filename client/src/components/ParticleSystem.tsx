@@ -7,10 +7,10 @@ export default function ParticleSystem() {
     if (!containerRef.current) return;
 
     const container = containerRef.current;
-    const colors = ['#00FFFF', '#8A2BE2', '#FF1493', '#32CD32'];
+    const colors = ['#00FFFF', '#8A2BE2', '#FF1493', '#32CD32', '#00BFFF'];
 
     const createParticle = () => {
-      if (Math.random() > 0.98) {
+      if (Math.random() > 0.97) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * window.innerWidth + 'px';
@@ -18,20 +18,30 @@ export default function ParticleSystem() {
         
         const color = colors[Math.floor(Math.random() * colors.length)];
         particle.style.background = color;
-        particle.style.boxShadow = `0 0 10px ${color}`;
+        particle.style.boxShadow = `0 0 15px ${color}`;
+        
+        // Random size
+        const size = Math.random() * 4 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
         
         container.appendChild(particle);
 
         let opacity = 1;
         let y = parseInt(particle.style.top);
+        let x = parseInt(particle.style.left);
+        const drift = (Math.random() - 0.5) * 2; // Random horizontal drift
         
         const animateParticle = () => {
-          opacity -= 0.02;
-          y -= 1;
+          opacity -= 0.015;
+          y -= Math.random() * 2 + 1;
+          x += drift;
+          
           particle.style.opacity = opacity + '';
           particle.style.top = y + 'px';
+          particle.style.left = x + 'px';
           
-          if (opacity <= 0) {
+          if (opacity <= 0 || y < -10) {
             if (particle.parentNode) {
               particle.parentNode.removeChild(particle);
             }
@@ -44,7 +54,7 @@ export default function ParticleSystem() {
       }
     };
 
-    const interval = setInterval(createParticle, 200);
+    const interval = setInterval(createParticle, 300);
 
     return () => {
       clearInterval(interval);

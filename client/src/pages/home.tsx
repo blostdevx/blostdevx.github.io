@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import LoadingScreen from "@/components/LoadingScreen";
-import MatrixRain from "@/components/MatrixRain";
-import CursorTrail from "@/components/CursorTrail";
-import Navigation from "@/components/Navigation";
-import HeroSection from "@/components/HeroSection";
-import TechStack from "@/components/TechStack";
-import BlogSection from "@/components/BlogSection";
-import WriteupSection from "@/components/WriteupSection";
-import DocsSection from "@/components/DocsSection";
-import ContactSection from "@/components/ContactSection";
-import ParticleSystem from "@/components/ParticleSystem";
+import LoadingScreen from "../components/LoadingScreen";
+import MatrixRain from "../components/MatrixRain";
+import CursorTrail from "../components/CursorTrail";
+import Navigation from "../components/Navigation";
+import HeroSection from "../components/HeroSection";
+import TechStack from "../components/TechStack";
+import BlogSection from "../components/BlogSection";
+import WriteupSection from "../components/WriteupSection";
+import DocsSection from "../components/DocsSection";
+import ContactSection from "../components/ContactSection";
+import ParticleSystem from "../components/ParticleSystem";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
