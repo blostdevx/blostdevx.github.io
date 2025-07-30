@@ -33,7 +33,7 @@ jobs:
         run: npm ci
         
       - name: Build static files
-        run: node build.config.js
+        run: npx vite build -c vite.config.github.ts
         
       - name: Create .nojekyll
         run: touch dist/.nojekyll
