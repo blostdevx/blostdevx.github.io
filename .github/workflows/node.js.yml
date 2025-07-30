@@ -1,4 +1,3 @@
-
 # Deploy Node.js app to GitHub Pages
 name: Deploy Node.js to GitHub Pages
 
@@ -20,42 +19,39 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-          
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Build static files
-        run: npx vite build -c vite.config.github.ts
-        
+        run: npx vite build --config vite.config.github.ts
+
       - name: Create .nojekyll
         run: touch dist/.nojekyll
-        
+
       - name: Create 404.html for SPA routing
         run: cp dist/index.html dist/404.html
-        
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: ./dist
 
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: deploy
         uses: actions/deploy-pages@v4
