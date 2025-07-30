@@ -3,6 +3,14 @@ import { SiPython, SiJavascript, SiReact, SiNodedotjs } from "react-icons/si";
 import { Shield, Code, Database, Globe } from "lucide-react";
 
 export default function DocsSection() {
+  const getHrefForCategory = (title: string) => {
+    switch (title) {
+      case "Python Mastery": return "/python";
+      case "Security Protocols": return "/security-protocols";
+      case "DevOps & Cloud": return "/git";
+      default: return "/content";
+    }
+  };
   const docCategories = [
     {
       icon: SiPython,

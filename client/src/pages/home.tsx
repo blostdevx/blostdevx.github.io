@@ -10,6 +10,7 @@ import WriteupSection from "../components/WriteupSection";
 import DocsSection from "../components/DocsSection";
 import ContactSection from "../components/ContactSection";
 import ParticleSystem from "../components/ParticleSystem";
+import ExperienceSection from "../components/ExperienceSection";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +38,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <TechStack />
+        <ExperienceSection />
         <BlogSection />
         <WriteupSection />
         <DocsSection />

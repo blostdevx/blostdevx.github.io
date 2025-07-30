@@ -10,13 +10,7 @@ export default function ContactSection() {
       borderColor: "border-neon-cyan",
       href: "https://github.com/blostdevx"
     },
-    {
-      icon: SiX,
-      label: "X/TWITTER",
-      color: "text-neon-purple",
-      borderColor: "border-neon-purple",
-      href: "https://x.com/blostdevx"
-    },
+
     {
       icon: SiLinkedin,
       label: "LINKEDIN",

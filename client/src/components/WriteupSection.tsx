@@ -3,19 +3,20 @@ import { Flag, Bug, Shield, Trophy, Target, Zap } from "lucide-react";
 
 export default function WriteupSection() {
   const ctfChallenges = [
-    { name: "PicoCTF 2024 - Binary Exploitation", status: "SOLVED", difficulty: "Hard", points: "500" },
-    { name: "HackTheBox - Web Challenges", status: "SOLVED", difficulty: "Medium", points: "300" },
-    { name: "TryHackMe - Cryptography Master", status: "SOLVED", difficulty: "Expert", points: "750" },
-    { name: "OverTheWire - Bandit Complete", status: "SOLVED", difficulty: "Beginner", points: "200" },
-    { name: "VulnHub - Advanced Pivoting", status: "IN PROGRESS", difficulty: "Hard", points: "600" }
+    { name: "HTB - Artificial", status: "SOLVED", difficulty: "Easy", points: "20" },
+    { name: "HTB - Outbound", status: "SOLVED", difficulty: "Medium", points: "30" },
+    { name: "HTB - Fluffy", status: "SOLVED", difficulty: "Easy", points: "20" },
+    { name: "HTB - Planning", status: "SOLVED", difficulty: "Easy", points: "20" },
+    { name: "HTB - Code", status: "SOLVED", difficulty: "Easy", points: "20" },
+    { name: "HTB - Cypher", status: "SOLVED", difficulty: "Medium", points: "30" },
+    { name: "HTB - Dog", status: "SOLVED", difficulty: "Hard", points: "40" },
+    { name: "HTB - Puppy", status: "SOLVED", difficulty: "Medium", points: "30" }
   ];
 
   const bugBounties = [
-    { name: "XSS in Major E-commerce Platform", reward: "$500", severity: "Medium", company: "Private" },
-    { name: "SQL Injection in Banking App", reward: "$1250", severity: "High", company: "Confidential" },
-    { name: "Authentication Bypass", reward: "$2000", severity: "Critical", company: "Fortune 500" },
-    { name: "CSRF in Social Media Platform", reward: "$750", severity: "Medium", company: "Tech Giant" },
-    { name: "File Upload RCE", reward: "$3500", severity: "Critical", company: "Under Review" }
+    { name: "Comenzando investigación en Bug Bounty", reward: "$0", severity: "Info", company: "En progreso" },
+    { name: "Aprendiendo metodologías OWASP", reward: "$0", severity: "Info", company: "Estudio" },
+    { name: "Practicando en laboratorios", reward: "$0", severity: "Info", company: "Preparación" }
   ];
 
   const getDifficultyColor = (difficulty: string) => {
@@ -184,7 +185,7 @@ export default function WriteupSection() {
             whileHover={{ scale: 1.05 }}
           >
             <Shield className="text-3xl text-neon-cyan mx-auto mb-2" />
-            <div className="text-2xl font-orbitron font-bold text-neon-cyan">47</div>
+            <div className="text-2xl font-orbitron font-bold text-neon-cyan">7</div>
             <div className="text-sm text-gray-400">CTFs Completed</div>
           </motion.div>
           
@@ -193,7 +194,7 @@ export default function WriteupSection() {
             whileHover={{ scale: 1.05 }}
           >
             <Bug className="text-3xl text-neon-pink mx-auto mb-2" />
-            <div className="text-2xl font-orbitron font-bold text-neon-pink">23</div>
+            <div className="text-2xl font-orbitron font-bold text-neon-pink">17</div>
             <div className="text-sm text-gray-400">Vulnerabilities Found</div>
           </motion.div>
           
@@ -202,7 +203,7 @@ export default function WriteupSection() {
             whileHover={{ scale: 1.05 }}
           >
             <Trophy className="text-3xl text-neon-green mx-auto mb-2" />
-            <div className="text-2xl font-orbitron font-bold text-neon-green">$12.5K</div>
+            <div className="text-2xl font-orbitron font-bold text-neon-green">$0</div>
             <div className="text-sm text-gray-400">Bounty Rewards</div>
           </motion.div>
           
@@ -211,7 +212,7 @@ export default function WriteupSection() {
             whileHover={{ scale: 1.05 }}
           >
             <Zap className="text-3xl text-neon-purple mx-auto mb-2" />
-            <div className="text-2xl font-orbitron font-bold text-neon-purple">156</div>
+            <div className="text-2xl font-orbitron font-bold text-neon-purple">80</div>
             <div className="text-sm text-gray-400">Research Hours</div>
           </motion.div>
         </motion.div>
