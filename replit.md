@@ -110,19 +110,24 @@ The application follows a monorepo structure with shared types and schemas, enab
 
 ## Recent Updates
 
-### GitHub Pages Deployment (Latest)
+### Automated GitHub Pages Deployment (Latest)
 - **Date**: January 2025
-- **Changes**: Configured complete GitHub Pages deployment setup
+- **Changes**: Complete automated deployment system with GitHub Actions
 - **Files Added**: 
+  - `.github/workflows/deploy.yml` - Automated CI/CD pipeline
   - `vite.config.github.ts` - Production build configuration
-  - `deploy.sh` - Automated deployment script
+  - `deploy.sh` - Manual deployment script (backup)
   - `DEPLOYMENT.md` - Complete deployment guide
   - `README-GITHUB-PAGES.md` - Step-by-step instructions
+  - `README-AUTOMATED-DEPLOY.md` - Automated deployment guide
 - **Features**: 
+  - Automatic build and deployment on every push to main
+  - GitHub Actions workflow with optimized build process
   - Static build optimization for GitHub Pages
   - SPA routing support with 404.html fallback
   - Asset compression and chunking
   - Ready for `username.github.io` deployment
+  - Zero-maintenance updates
 
 ### Git Tutorial Implementation
 - **Date**: January 2025  
