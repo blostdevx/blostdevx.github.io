@@ -8,7 +8,7 @@ import Home from "@/pages/home";
 import CybersecurityComingSoon from "@/pages/cybersecurity-coming-soon";
 import GitTutorial from "@/pages/git-tutorial";
 import ContentFilterPage from "@/pages/content-filter";
-
+import QATestingCourse from "@/pages/qa-testing-course";
 function Router() {
   return (
     <Switch>
@@ -16,6 +16,7 @@ function Router() {
       <Route path="/cybersecurity" component={CybersecurityComingSoon} />
       <Route path="/git-tutorial" component={GitTutorial} />
       <Route path="/content" component={ContentFilterPage} />
+      <Route path="/qa-testing-course" component={QATestingCourse} />
       <Route component={NotFound} />
     </Switch>
   );
